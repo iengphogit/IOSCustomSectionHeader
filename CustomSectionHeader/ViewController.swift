@@ -13,6 +13,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     let sections: [String] = ["Section 1","Section 2","Section 3"]
+    let sectionImages: [UIImage] = [UIImage(named: "facebook")!, UIImage(named: "twitter")!, UIImage(named: "camera")!]
+    
     let s1Data: [String] = ["Row 1", "Row 2", "Row 3"]
     let s2Data: [String] = ["Row 1", "Row 2", "Row 3","Row 4"]
     let s3Data: [String] = ["Row 1", "Row 2", "Row 3","Row 4","Row 5"]
@@ -37,6 +39,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.orange
+        
+        let image = UIImageView(image: sectionImages[section])
+        image.frame = CGRect(x: 15, y: 5, width: 35, height: 35)
+        view.addSubview(image)
+        
+        let label = UILabel()
+        label.text = sections[section]
+        label.frame = CGRect(x: 55, y: 5, width: 100, height: 35)
+        view.addSubview(label)
+        
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
